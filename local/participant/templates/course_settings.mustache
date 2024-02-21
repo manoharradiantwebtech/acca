@@ -1,0 +1,55 @@
+<div class="main-wrapper">
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+        <div class="section-main-content pb-5">
+            <div class="row">
+                <div class="col-md-3 mb-4">
+                    <div class="admin-links-block">
+                        <div class="admin-links-heading"> <i class="fa fa-briefcase"></i> {{#str}}courses, local_participant{{/str}} </div>
+                        <div class="admin-links-list">
+                            <ul>
+                                <li><a href="{{course_management}}">{{#str}}manage_courses_categories, local_participant{{/str}}</a></li>
+                                <li><a href="{{course_customfield}}">{{#str}}course_custom_fields, local_participant{{/str}}</a></li>
+                                <li><a href="{{course_editcategory}}">{{#str}}add_category, local_participant{{/str}}</a></li>
+                                <li><a href="{{course_edit}}">{{#str}}add_new_course, local_participant{{/str}}</a></li>
+                                <li><a href="{{course_backup}}">{{#str}}restore_course, local_participant{{/str}}</a></li>
+                                <li><a href="{{course_settings}}">{{#str}}course_default_settings, local_participant{{/str}}</a></li>
+                                <li><a href="{{course_downloadcoursecontent}}">{{#str}}download_course_content, local_participant{{/str}}</a></li>
+                                <li><a href="{{course_courserequest}}">{{#str}}course_request, local_participant{{/str}}</a></li>
+                                <li><a href="{{course_pending}}">{{#str}}pending_requests, local_participant{{/str}}</a></li>
+                                <li><a href="{{course_uploadcourse}}">{{#str}}upload_courses, local_participant{{/str}}</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- ######################################## -->
+                <div class="col-md-3 mb-4">
+                    <div class="admin-links-block">
+                        <div class="admin-links-heading"> <i class="fa fa-calendar" aria-hidden="true"></i> <a href="#">{{#str}}activity_chooser, local_participant{{/str}}</a> </div>
+                        <div class="admin-links-list">
+                            <ul>
+                                <li><a href="{{activitychoosersettings}}">{{#str}}activity_chooser_settings, local_participant{{/str}}</a></li>
+                                <li><a href="{{recommendations}}">{{#str}}recommended_activities, local_participant{{/str}}</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- ######################################## -->
+                <div class="col-md-3 mb-4">
+                    <div class="admin-links-block">
+                        <div class="admin-links-heading"> <i class="fa fa-database" aria-hidden="true"></i> <a href="#">{{#str}}backups, local_participant{{/str}}</a> </div>
+                        <div class="admin-links-list">
+                            <ul>
+                                <li><a href="{{backupgeneralsettings}}">{{#str}}general_backup_defaults, local_participant{{/str}}</a></li>
+                                <li><a href="{{importgeneralsettings}}">{{#str}}general_import_defaults, local_participant{{/str}}</a></li>
+                                <li><a href="{{automated}}">{{#str}}automated_backup_setup, local_participant{{/str}}</a></li>
+                                <li><a href="{{restoregeneralsettings}}">{{#str}}general_restore_defaults, local_participant{{/str}}</a></li>
+                                <li><a href="{{asyncgeneralsettings}}">{{#str}}async_backup_restore, local_participant{{/str}}</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>

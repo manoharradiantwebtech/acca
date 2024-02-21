@@ -1,0 +1,41 @@
+<div class="main-wrapper">
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+        <div class="section-main-content pb-5">
+            <div class="alert alert-danger d-flex justify-content-between align-items-center py-2">
+                {{#str}}site_not_registered, local_participant{{/str}}
+                <a class="btn btn-prime btn-sm my-2" href="#">{{#str}}register_site, local_participant{{/str}}</a>
+            </div>
+            <div class="row">
+                <div class="col-md-3 mb-4">
+                    <div class="admin-links-block">
+                        <div class="admin-links-heading"> <i class="fa fa-graduation-cap" aria-hidden="true"></i> {{#str}}grades, local_participant{{/str}} </div>
+                        <div class="admin-links-list">
+                            <ul>
+                                <li><a href={{gradessettings}}>{{#str}}gradessettings, local_participant{{/str}}</a></li>
+                                <li><a href={{gradecategorysettings}}>{{#str}}gradecategorysettings, local_participant{{/str}}</a></li>
+                                <li><a href={{gradeitemsettings}}>{{#str}}gradeitemsettings, local_participant{{/str}}</a></li>
+                                <li><a href={{scale}}>{{#str}}scale, local_participant{{/str}}</a></li>
+                                <li><a href={{grade}}>{{#str}}grade, local_participant{{/str}}</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- ######################################## -->
+                <div class="col-md-3 mb-4">
+                    <div class="admin-links-block">
+                        <div class="admin-links-heading"> <i class="fa fa-file-text-o" aria-hidden="true"></i> <a href="#">{{#str}}report_settings, local_participant{{/str}}</a> </div>
+                        <div class="admin-links-list">
+                            <ul>
+                                <li><a href={{gradereportgrader}}>{{#str}}gradereportgrader, local_participant{{/str}}</a></li>
+                                <li><a href={{gradereporthistory}}>{{#str}}gradereporthistory, local_participant{{/str}}</a></li>
+                                <li><a href={{gradereportoverview}}>{{#str}}gradereportoverview, local_participant{{/str}}</a></li>
+                                <li><a href={{gradereportuser}}>{{#str}}gradereportuser, local_participant{{/str}}</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>

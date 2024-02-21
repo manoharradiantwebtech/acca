@@ -1,0 +1,20 @@
+<div class="row" data-content="inpage-reply-content" >
+	<div class="col-md-1"></div>
+	<div class=" card-body col-md-10">
+		<form data-post-id="{{random_id}}" id="reply-{{random_id}}" action="{{url}}" method="post">
+			<div class="row pb-1">
+				<textarea rows="5" name="description" title="post" class="form-control"placeholder="Write your reply..."></textarea>
+				<input type="hidden" name="random_id" value="{{random_id}}">
+				<input type="hidden" name="sesskey" value="{{sesskey}}"/>
+				<input type="hidden" name="is_reply" value="1">
+				<input type="hidden" name="requesterid" value="{{userid}}">
+			</div>
+			<div class="row">
+				<button class="btn btn-primary discution-replay" title="Submit" data-action="forum-inpage-submit">
+					<span data-region="submit-text">Reply</span>
+				</button>
+			</div>
+		</form>
+	</div>
+	<div class="col-md-1"></div>
+</div>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="mod/versereminder/db" VERSION="20160511" COMMENT="XMLDB file for Moodle mod/versereminder" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="versereminder" COMMENT="versereminder activity">
+		  <FIELDS>
+			<FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+			<FIELD NAME="course" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+			<FIELD NAME="name" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false"/>
+			<FIELD NAME="timecreated" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+			<FIELD NAME="timemodified" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+			<FIELD NAME="emailuser" TYPE="int" LENGTH="4" NOTNULL="true" DEFAULT="1" SEQUENCE="false"/>
+			<FIELD NAME="emailcontent" TYPE="text" NOTNULL="true" SEQUENCE="false"/>
+			<FIELD NAME="emailcontentformat" TYPE="int" LENGTH="4" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+			<FIELD NAME="emailsubject" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false"/>
+			<FIELD NAME="managersemail" TYPE="int" LENGTH="4" NOTNULL="false" DEFAULT="0" SEQUENCE="false"/>
+			<FIELD NAME="manageremaildelay" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="604800" SEQUENCE="false" />
+			<FIELD NAME="manageremailfrequency" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="604800" SEQUENCE="false" />
+			<FIELD NAME="comanagersemail" TYPE="int" LENGTH="4" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+			<FIELD NAME="comanagersemaildelay" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="604800" SEQUENCE="false" />
+			<FIELD NAME="comanagersemailfrequency" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="604800" SEQUENCE="false" />
+			<FIELD NAME="emailrecipient" TYPE="int" LENGTH="4" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+			<FIELD NAME="thirdpartyemails " TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+			<FIELD NAME="emailsubjectthirdparty" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false"/>
+			<FIELD NAME="manageremailcontent" TYPE="text" NOTNULL="false" SEQUENCE="false"/>
+			<FIELD NAME="emailcontentthirdpartyformat" TYPE="int" LENGTH="4" NOTNULL="false" DEFAULT="0" SEQUENCE="false"/>
+			<FIELD NAME="duration" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="604800" SEQUENCE="false"/>
+			<FIELD NAME="verseremindercount" TYPE="int" LENGTH="3" NOTNULL="true" DEFAULT="1" SEQUENCE="false"/>
+			<FIELD NAME="suppresstarget" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+			<FIELD NAME="emaildelay" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="604800" SEQUENCE="false"/>
+			<FIELD NAME="startdelay" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+			<FIELD NAME="referancedate" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+		  </FIELDS>
+		  <KEYS>
+			<KEY NAME="primary" TYPE="primary" FIELDS="id" COMMENT="Primary key for versereminder"/>
+		  </KEYS>
+		  <INDEXES>
+			<INDEX NAME="course" UNIQUE="false" FIELDS="course"/>
+		  </INDEXES>
+    </TABLE>
+    <TABLE NAME="versereminder_inprogress" COMMENT="records of versereminder activities currently in progress">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="versereminder" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="userid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="completiontime" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="emailtime" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="emailsent" TYPE="int" LENGTH="4" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+		<FIELD NAME="manageremailsent" TYPE="int" LENGTH="4" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+		<FIELD NAME="manageremailtime" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+		<FIELD NAME="comanageremailsent" TYPE="int" LENGTH="4" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+		<FIELD NAME="comanageremailtime" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="completed" TYPE="int" LENGTH="4" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+		<FIELD NAME="issend" TYPE="int" LENGTH="4" NOTNULL="true" DEFAULT="1" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+    </TABLE>
+  </TABLES>
+</XMLDB>

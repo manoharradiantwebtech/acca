@@ -1,0 +1,12 @@
+
+<div class="row">
+	<div class="col-md-12" style="clear: both">
+		{{#history}}
+			{{> local_query/history_row}}
+		{{/history}}
+	</div>
+</div>
+{{#request}}
+		{{> local_query/reply_form}}
+{{/request}}
+

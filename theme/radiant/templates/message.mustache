@@ -1,0 +1,59 @@
+<div class="gt_floatmain gt_theme1 siq_bR" style="visibility: hidden; display: block;" id="showMsg">
+	<div id="gt_float" class="gt_float gt_off" style="font-family:inherit">
+
+			<a class="btn btn-warning btn-sm rounded-pill px-3 support-button" id="MassageDiv" href# style="
+"><i class="fa fa-envelope mr-1"></i> Support</a>
+
+		   <div id="titlediv" class="gt_cnt">
+             <p id="gt_byline" class="gt_ellips" title="Leave a message">Ask Your Query.</p>
+           </div>
+			<em id="gt_unreadcnt" class="gt_unrdcnt" style="display: none;"></em>
+			<em id="gt_avcall" class="gtmin_unrdcnt gt_unrdcnt siqico-mincall" style="display: none;"></em>
+
+	</div>
+</div>
+
+<div id="message" style="inset: auto 5px -554.9px auto; right:10px; bottom: -554.9px;" class="zls-sptwndw  siqembed siqtrans zsiq-mobhgt siq_rht zsiq_size2 siqanim" embedtheme="1">
+	<div id="siqcht" class="zls-prelative">
+		<div id="frame">
+			<section id="window-ribbon" themeid="1" class="siqembed siqc-convert outerwin emwin zsiq_size2" cwview="msgarea">
+				<header class=" noaboutme" prop="header"><div class="posrel headercont">
+					<div class="actbtn">
+					      <img src="{{config.wwwroot}}/theme/radiant/images/close.png" title="Minimize" class="sqico-min siq-minimize-icon" documentclick="min_iframe" id="siq-minimize">
+					      </img>
+					</div>
+					<div class="cmplogo siq-company-logo">
+						<span class="sqico-user">
+						<img id="complogo" class="cmn_mdl siq-company-logo" src="{{output.get_compact_logo_url}}" width="100%" alt="{{sitename}}"></span>
+					</div>
+					<div class="msgerror" id="msgerror"></div>
+				</header>
+				<form method="post" action="#" id="msgForm">
+				<input type="hidden" name="page" value="{{{ output.get_course_page }}}">
+				<section class="content posrel siq_content siqforms" purpose="outer" proptype="siqform">
+					<div custom="name">
+						<input type="text" name='fullname' value="{{output.get_userFullname}}" id="visname" placeholder="Enter your name" class="siq-input-text-box required">
+					</div>
+					<div custom="email">
+						<input type="text" name='email' id="visemail" value="{{output.get_userEmail}}" class="siq-input-text-box required" placeholder="Your email address">
+					</div>
+					<div custom="phone">
+						<input type="text" name='phone' value="{{output.get_userPhone}}" class="siq-input-text-box required" id="visphone" placeholder="Phone number">
+					</div>
+					<div class="msgbox posrel" custom="question">
+						<div class="posrel siq-message-area">
+							<textarea name="message" placeholder="Type your message here and click Submit" class="msgarea siq-message-textarea required" type="text" id="msgarea"></textarea>
+						</div>
+					</div>
+				</section>
+				</form>
+				<footer class="clearfix">
+
+					<div class="floatrg">
+						<em class="sqico-send siq-send-button" id="sqico-send" proptype="sqico-send">Submit</em>
+					</div>
+				</footer>
+			</section>
+		</div>
+	</div>
+</div>

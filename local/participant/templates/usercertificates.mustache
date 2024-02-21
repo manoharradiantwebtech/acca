@@ -1,0 +1,62 @@
+<div class="main-wrapper">
+    <main class="main-content">
+        <!-- PAGE HEADING -->
+        <div class="page-header pt-0 pb-0">
+            <div class="container-fluid">
+                <div class="row justify-content-between align-items-end">
+                    <div class="col-md-auto page-header-left pt-2">
+                        <h4 class="mb-1">{{#str}}certificates_heading, local_participant{{/str}}</h4>
+                        <p class="mb-0">{{#str}}certificates_description, local_participant{{/str}}</p>
+                    </div>
+                    <div class="col-md-auto page-header-right pt-2">
+                        <a class="btn btn-sec btn-sm" href={{url}}>{{#str}}back_to_dashboard, local_participant{{/str}}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MAIN CONTENT -->
+        <div class="section-main-content">
+            <div class="container-fluid">
+                <div class="table-responsive">
+                    <div class="table-wrapper">
+                        <table class="table table-hover table-striped bg-white content-table mb-0">
+                            <thead class="bg-white">
+                                <tr>
+                                    <th scope="col">{{#str}}serial_number, local_participant{{/str}}</th>
+                                    <th scope="col">{{#str}}course_enrolled, local_participant{{/str}}</th>
+                                    <th scope="col">{{#str}}enrollment_date, local_participant{{/str}}</th>
+                                    <th scope="col">{{#str}}completion_date, local_participant{{/str}}</th>
+                                    <th scope="col">{{#str}}share_on, local_participant{{/str}}</th>
+                                    <th scope="col"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#completed_certificates}}
+                                <tr>
+                                    <td class="fw600">#{{count}}</td>
+                                    <td>
+                                        <h6 class="mb-0"><a href="#">{{name}}</a></h6>
+                                    </td>
+                                    <td>{{enrolled_date}}</td>
+                                    <td>{{completion_date}}</td>
+                                    <td>
+                                        <div id="div_shares">
+                                            <div id="shareon"></div>
+                                            <div class="share_button" hash="<?php echo $hash; ?>"></div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-prime btn-sm mx-1" href={{download-url}}><i class="singlebutton fa fa-download mr-2"></i> {{#str}}download, local_participant{{/str}}</a>
+                                    </td>
+                                </tr>
+                                {{/completed_certificates}}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+

@@ -1,0 +1,80 @@
+<div class="main-wrapper">
+    <main class="main-content">
+        <!-- PAGE HEADING -->
+        <div class="page-header pt-0 pb-0">
+            <div class="container-fluid">
+                <div class="row justify-content-between align-items-end">
+                    <div class="col-md-auto page-header-left pt-2">
+                        <h4 class="mb-1">{{#str}}feedback, local_participant{{/str}}</h4>
+                        <p class="mb-0">{{#str}}share_feedback_heading, local_participant{{/str}}</p>
+                    </div>
+                    <div class="col-md-auto page-header-right pt-2">
+                        <a class="btn btn-sec btn-sm" href={{feedback_url}}>{{#str}}back_to_dashboard, local_participant{{/str}}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MAIN CONTENT -->
+        <div class="section-main-content">
+            <div class="container-fluid">
+                <div class="card-feedback card shadow-sm">
+                    <div class="card-body p-5">
+                        <div class="row">
+                            <div class="col-md-7 mx-auto">
+                                <div class="text-center mb-5">
+                                    <h5 class="fw600 mb-1">{{#str}}share_feedback_heading, local_participant{{/str}}</h5>
+                                    <p class="text-prime fw500">{{#str}}share_feedback_description, local_participant{{/str}}</p>
+                                </div>
+                                <form action="" method="POST">
+                                    <h6 class="text-center fw500 mb-3">{{#str}}select_feedback_subject, local_participant{{/str}}</h6>
+                                    <div class="feedback-subject text-center mb-2">
+                                        <div class="custom-control custom-radio custom-control-inline fw600 mr-4">
+                                            <input class="custom-control-input" type="radio" name="feedback-option" id="feedback-option1" value="option1" checked>
+                                            <label class="custom-control-label" for="feedback-option1">{{#str}}course_feedback, local_participant{{/str}}</label>
+                                        </div>
+                                        <div class="custom-control custom-radio custom-control-inline fw600 mr-4">
+                                            <input class="custom-control-input" type="radio" name="feedback-option" id="feedback-option2" value="option2">
+                                            <label class="custom-control-label" for="feedback-option2">{{#str}}product_feedback, local_participant{{/str}}</label>
+                                        </div>
+                                        <div class="custom-control custom-radio custom-control-inline fw600">
+                                            <input class="custom-control-input" type="radio" name="feedback-option" id="feedback-option3" value="option3">
+                                            <label class="custom-control-label" for="feedback-option3">{{#str}}faculty_feedback, local_participant{{/str}}</label>
+                                        </div>
+                                    </div>
+                                      <!-- Rating System -->
+                                      <div class="rabbstar" id="yui_3_1 8_21" style="text-align: center; display: block;  ">
+                                         <div class="rating">
+                                            <div class="star" data-rating="1"></div>
+                                            <div class="star" data-rating="2"></div>
+                                            <div class="star" data-rating="3"></div>
+                                            <div class="star" data-rating="4"></div>
+                                            <div class="star" data-rating="5"></div>
+                                          </div>
+                                         </div>
+                                          <span class="rating-label">Rating: <span id="current-rating">0</span> / 5</span>
+
+                                                                        <!-- End Rating System -->
+                                    <div class="form-group mb-3">
+                                        <textarea class="form-control form-control-lg" name="feedback-text" rows="6" placeholder="{{#str}}write_feedback, local_participant{{/str}}"></textarea>
+                                    </div>
+
+                                    <div class="text-center mb-5">
+                                        <button class="btn btn-prime px-5 py-2" type="submit"><span class="py-1 d-inline-block">{{#str}}submit_feedback, local_participant{{/str}}</span></button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<!-- Your existing HTML code -->
+
+
+
+
+

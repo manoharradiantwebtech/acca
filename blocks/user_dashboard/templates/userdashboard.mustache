@@ -1,0 +1,150 @@
+
+<div class="main-wrapper">
+  <main class="main-content"> 
+    <!-- <nav class="breadcrumb-container" aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#"><i class="fa fa-home"></i></a></li>
+                    <li class="breadcrumb-item">Listing</li>
+                    <li class="breadcrumb-item active" aria-current="page">Diploma in International Financial Reporting Standards</li>
+                </ol>
+            </nav> --> 
+    <!-- PAGE HEADING -->
+    <div class="page-header pt-2">
+      <div class="container-fluid">
+        <div class="row justify-content-between align-items-end">
+          <div class="col-md-auto page-header-right pt-2"> </div>
+        </div>
+      </div>
+    </div>
+    <!-- HIGHLIGHT -->
+    <section class="dashboard-highlight">
+      <div class="container-fluid px-2">
+        <div class="row mx-n2 highlight-list">
+          <div class="col-md-4 px-0 mb-3"> <a class="total-course-dashboard highlight-block card shadow-sm rounded" href={{enrolled_course_view}}>
+            <div class="card-body position-relative">  <span class="icon"><img src="../blocks/user_dashboard/images/total-courses.png" alt="User Icon"></span>
+              <h4>{{enrolled_count}}</h4>
+              <p>Total Courses</p>
+            </div>
+            <div class="card-footer d-flex justify-content-between align-items-center py-1">View Details <i class="fa fa-arrow-right"></i> </div>
+            </a> </div>
+          <div class="col-md-4 px-2 mb-3"> <a class="total-course-completed highlight-block card shadow-sm rounded" href={{enrolled_course_view}}>
+            <div class="card-body position-relative"> <span class="icon"><img src="../blocks/user_dashboard/images/completed-course.png" alt="User Icon"></span>
+              <h4>{{completed_count}}</h4>
+              <p>Completed Course</p>
+            </div>
+            <div class="card-footer d-flex justify-content-between align-items-center py-1" >View Details <i class="fa fa-arrow-right"></i></div>
+            </a> </div>
+          <div class="col-md-4 px-0 mb-3"> <a class="highlight-block card shadow-sm rounded" href={{certificate_page}}>
+            <div class="card-body position-relative"> <span class="icon"><img src="../blocks/user_dashboard/images/certificates.png" alt="User Icon"></span>
+              <h4>{{certificates}}</h4>
+              <p>Certificate</p>
+            </div>
+            <div class="card-footer d-flex justify-content-between align-items-center py-1">View Details <i class="fa fa-arrow-right"></i></div>
+            </a> </div>
+        </div>
+      </div>
+    </section>
+    <div class=" py-2">
+      <hr class="divider-line">
+    </div>
+    <div class="card-section-header d-flex justify-content-between align-items-center">
+      <div class="btn-group btn-group-toggle filter-btn-group" data-toggle="buttons">
+        <label class="btn btn-light btn-sm px-4 allcourses active">
+          <input type="radio" name="options" id="option1" checked>
+          All </label>
+        <label class="btn btn-light btn-sm in-progress">
+          <input type="radio" name="options" id="option2">
+          In Progress </label>
+        <label class="btn btn-light btn-sm completed completed-course">
+          <input type="radio" name="options" id="option3">
+          Completed </label>
+      </div>
+      <a class="btn btn-outline-prime btn-sm py-1" href={{enrolled_course_view}}>View All</a> </div>
+   <div class="bg-white home-pg-blocks">
+   
+    {{#enrolled_courses}}
+    <div class="course-list-block enrolled_course">
+      <div class="d-flex">
+        <div class="flex-grow-1">
+          <div class="row no-gutters">
+            <div class="col-lg-12 pl-3 py-2">
+              <h6 class="mb-2 mt-1"><a href={{course_url}}>{{coursename}}</a></h6>
+              {{#expireday}}<span class="text-warning py-1  small fw600">Expires on {{expireday}}</span>{{/expireday}} 
+			  {{#isresume}}
+			  <span> <a class="btn resume-btn" href={{viewurl}}>Resume</a></span> 
+			  {{/isresume}}
+			  </div>
+          </div>
+        </div>
+        <div class="d-inline-block pl-2">
+          <div class="course-progress px-3">
+            <div class="posi-bottom">
+              <div class="progress-block"> <svg width="0" height="0" style="opacity: 0; position: absolute;">
+                <defs>
+                  <linearGradient id="linear" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#00f796"></stop>
+                    <stop offset="100%" stop-color="#00b7f4"></stop>
+                  </linearGradient>
+                </defs>
+                <rect x="10" y="10" width="600" height="200" fill="url(#linear)"></rect>
+                </svg>
+                <section class="svg-container"> <svg class="radial-progress" data-countervalue="{{{course_completion.completion_percentage}}}" viewBox="0 0 80 80">
+                  <circle class="bar-static-outer" cx="40" cy="40" r="40"></circle>
+                  <circle class="bar-static" cx="40" cy="40" r="34"></circle>
+                  <circle class="bar-static-inner" cx="40" cy="40" r="31"></circle>
+                  <circle class="bar--animated" cx="40" cy="40" r="35" style="stroke-dashoffset: {{{course_completion.dashoffset}}};"></circle>
+                  <text class="countervalue start" x="50%" y="57%" transform="matrix(0, 1, -1, 0, 80, 0)">{{{course_completion.completion_percentage}}}</text>
+                  </svg> </section>
+              </div>
+            </div>
+            <!--<p class="small fw500 mb-0 text-center">Course<span class="d-block"></span>Completed</p>-->
+          </div>
+        </div>
+      </div>
+    </div>
+    {{/enrolled_courses}}
+    
+    {{#completed_courses}}
+    <div class="course-list-block completedc">
+      <div class="d-flex">
+        <div class="flex-grow-1">
+          <div class="row no-gutters">
+            <div class="col-lg-12 pl-3 py-2">
+              <h6 class="mb-2 mt-1"><a href={{course_url}}>{{coursename}}</a></h6>
+              <span class="text-warning py-1  small fw600">Completed on {{completiondate}}</span>
+              {{#view_certificate}}
+              <a class="btn btn-outline-prime btn-sm my-1" href={{view_certificate}}>View Certificate</a>
+              {{/view_certificate}}
+              </div>
+          </div>
+        </div>
+        <div class="d-inline-block pl-2">
+          <div class="course-progress px-3">
+            <div class="posi-bottom">
+              <div class="progress-block"> <svg width="0" height="0" style="opacity: 0; position: absolute;">
+                <defs>
+                  <linearGradient id="linear" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#00f796"></stop>
+                    <stop offset="100%" stop-color="#00b7f4"></stop>
+                  </linearGradient>
+                </defs>
+                <rect x="10" y="10" width="600" height="200" fill="url(#linear)"></rect>
+                </svg>
+                <section class="svg-container"> <svg class="radial-progress" data-countervalue="{{{course_completion.completion_percentage}}}" viewBox="0 0 80 80">
+                  <circle class="bar-static-outer" cx="40" cy="40" r="40"></circle>
+                  <circle class="bar-static" cx="40" cy="40" r="34"></circle>
+                  <circle class="bar-static-inner" cx="40" cy="40" r="31"></circle>
+                  <circle class="bar--animated" cx="40" cy="40" r="35" style="stroke-dashoffset: {{{course_completion.dashoffset}}};"></circle>
+                  <text class="countervalue start" x="50%" y="57%" transform="matrix(0, 1, -1, 0, 80, 0)">{{{course_completion.completion_percentage}}}</text>
+                  </svg> </section>
+              </div>
+            </div>
+            <!--<p class="small fw500 mb-0 text-center">Course<span class="d-block"></span>Completed</p>-->
+          </div>
+        </div>
+      </div>
+    </div>
+    {{/completed_courses}} 
+     </div>
+    </main>
+</div>

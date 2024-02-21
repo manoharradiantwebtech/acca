@@ -1,0 +1,69 @@
+{{!
+    This file is part of Moodle - http://moodle.org/
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+}}
+{{!
+    @template core_courseformat/local/courseindex/drawer
+
+    This template renders the course index drawer with the placeholder.
+
+    The code from this file is just an stub as the final code will come from
+    the new layouts for Moodle 4.0.
+
+    Example context (json):
+    {}
+}}
+{{#isstudent}}
+<nav id="courseindex" class="courseindex">
+    <div id="courseindex-content">
+      <aside class="admin-sidebar">
+        <ul class="admin-sidebar-links">
+          <li><a href="{{config.wwwroot}}/my/"><img src="{{config.wwwroot}}/theme/radiant/images/dashboard.png" alt="Dashboard"> Dashboard</a></li>
+          <li class="active"><a href="{{config.wwwroot}}/calendar/view.php?view=month"><img src="{{config.wwwroot}}/theme/radiant/images/event.png" alt="Event"> Event</a></li>
+          <li><a href="{{config.wwwroot}}/local/participant/user_certificates.php"><img src="{{config.wwwroot}}/theme/radiant/images/certificate.png" alt="Certificates"> Certificates</a></li>
+          <li><a href="{{config.wwwroot}}/local/participant/badges.php"><img src="{{config.wwwroot}}/theme/radiant/images/badge.png" alt="Badges"> Badges</a></li>
+          <li><a href="{{config.wwwroot}}/local/participant/user_purchase-history.php"><img src="{{config.wwwroot}}/theme/radiant/images/purchase-history.png" alt="userpurchase"> User Purchase History</a></li>
+          <li><a href="{{config.wwwroot}}/local/participant/user_feedback.php"><img src="{{config.wwwroot}}/theme/radiant/images/feedback.png" alt="Feedback"> Feedback</a></li>
+          <li><a href="{{config.wwwroot}}/local/participant/support.php"><img src="{{config.wwwroot}}/theme/radiant/images/support.png" alt="Support"> Support</a></li>
+          <li><a href="{{config.wwwroot}}/login/logout.php"><img src="{{config.wwwroot}}/theme/radiant/images/logout.png" alt="Logout"> Logout</a></li>
+        </ul>
+      </aside>
+    </div>
+</nav>
+{{/isstudent}}
+{{^isstudent}}
+<nav id="courseindex" class="courseindex">
+    <div id="courseindex-content">
+      <aside class="admin-sidebar">
+        <ul class="admin-sidebar-links">
+          <li><a href="{{config.wwwroot}}/my"><img src="{{config.wwwroot}}/theme/radiant/images/dashboard.png" alt="Dashboard"> Dashboard</a></li>
+          <li class="active"><a href="{{config.wwwroot}}/admin/search.php"><img src="{{config.wwwroot}}/theme/radiant/images/settings.png" alt="My Courses"> Site Admin</a></li>
+          <li><a href="{{config.wwwroot}}/blocks/iomad_company_admin/index.php"><img src="{{config.wwwroot}}/theme/radiant/images/multi-tenant.png" alt="Events"> Multi Tenant</a></li>
+          <li><a href="{{config.wwwroot}}/local/participant/usersettings.php"><img src="{{config.wwwroot}}/theme/radiant/images/user.png" alt="Certificates"> Users</a></li>
+          <li><a href="{{config.wwwroot}}/local/participant/course_settings.php"><img src="{{config.wwwroot}}/theme/radiant/images/settings.png" alt="Badges"> Course Settings</a></li>
+          <li><a href="{{config.wwwroot}}/local/participant/badges.php"><img src="{{config.wwwroot}}/theme/radiant/images/grades.png" alt="badge"> Badges</a></li>
+          <li><a href="{{config.wwwroot}}/local/participant/appearancesetting.php"><img src="{{config.wwwroot}}/theme/radiant/images/appearance.png" alt="Feedback"> Appearance</a></li>
+          <li><a href="{{config.wwwroot}}/local/query/"><img src="{{config.wwwroot}}/theme/radiant/images/query.png" alt="Support"> Query</a></li>
+        </ul>
+      </aside>
+    </div>
+</nav>
+{{/isstudent}}
+
+{{#js}}
+require(['core_courseformat/local/courseindex/drawer'], function(component) {
+    component.init('courseindex');
+});
+{{/js}}

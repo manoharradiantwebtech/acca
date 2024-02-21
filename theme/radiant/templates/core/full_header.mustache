@@ -1,0 +1,97 @@
+{{!
+    This file is part of Moodle - http://moodle.org/
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+}}
+{{!
+    @template theme_radiant/header
+
+    This template renders the header.
+
+    Example context (json):
+    {
+        "contextheader": "context_header_html",
+        "hasnavbar": false,
+        "navbar": "navbar_if_available",
+        "courseheader": "course_header_html",
+        "welcomemessage": "welcomemessage"
+    }
+}}
+<header id="page-header" class="row page_full_header">
+    <div class="col-12 pt-3 pb-3">
+   {{#admin}}
+      <div class="card {{^contextheader}}border-0 bg-transparent{{/contextheader}}">
+                <div class="card-body {{^contextheader}}p-2{{/contextheader}}">
+                <div class="d-flex align-items-center">
+                    <div class="mr-auto">
+                    {{{contextheader}}}
+                    </div>
+                    <div class="header-actions-container flex-shrink-0" data-region="header-actions-container">
+                        {{#headeractions}}
+                            <div class="header-action ml-2">{{{.}}}</div>
+                        {{/headeractions}}
+                    </div>
+                </div>
+                <div class="d-flex flex-wrap">
+                    {{#hasnavbar}}
+                    <div id="page-navbar">
+                        {{{navbar}}}
+                    </div>
+                    {{/hasnavbar}}
+                    <div class="ml-auto d-flex">
+                        {{{pageheadingbutton}}}
+                    </div>
+                    <div id="course-header">
+                        {{{courseheader}}}
+                    </div>
+                </div>
+              </div>
+              </div>
+        {{> core/welcome }}
+        {{/admin}}
+       {{#studentmodpage}}
+        <div class="d-flex align-items-center">
+                            <div class="mr-auto">
+                            {{{contextheader}}}
+                            </div>
+                            <div class="header-actions-container flex-shrink-0" data-region="header-actions-container">
+                           {{#enrollment_date}}
+                               <div class="col-md-auto page-header-right pt-2">
+                                   <div class="inline-block text-right mr-3">
+                                      <p class="text-muted small mb-0">Enrolled on</p>
+                                      <div class="fs-6 fw500">{{enrollment_date}}</div>
+                                    </div>
+                                </div>
+                              {{/enrollment_date}}
+                                {{#headeractions}}
+                                    <div class="header-action ml-2">{{{.}}}</div>
+                                {{/headeractions}}
+                            </div>
+                        </div>
+                        <div class="d-flex flex-wrap">
+                            {{#hasnavbar}}
+                            <div id="page-navbar">
+                                {{{navbar}}}
+                            </div>
+                            {{/hasnavbar}}
+                            <div class="ml-auto d-flex">
+                                {{{pageheadingbutton}}}
+                            </div>
+                            <div id="course-header">
+                                {{{courseheader}}}
+                            </div>
+                        </div>
+        {{/studentmodpage}}
+    </div>
+</header>

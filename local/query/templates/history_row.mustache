@@ -1,0 +1,17 @@
+<div class="col-md-10 alert {{#is_requester}}alert-info bubble{{/is_requester}}
+		{{^is_requester}}alert-success bubble-right {{/is_requester}}" 
+		{{#is_requester}}style="font-size: 13px; float:left; clear: both"{{/is_requester}}
+		{{^is_requester}}style="font-size: 13px; float:right; clear: both" {{/is_requester}}>
+	<div class="row">
+		<div class="col-md-3" style="text-align:left;font-weight:700;border-bottom:1px solid;">
+			{{#is_requester}}{{# str }} question, local_query {{/ str }}{{/is_requester}}
+			{{^is_requester}}{{# str }} answer, local_query {{/ str }}{{/is_requester}}
+		</div>
+		<div class="col-md-9" style="text-align:right;font-weight:700;border-bottom:1px solid;">
+			{{#userdate}} {{timecreated}}, {{#str}} datetimeformat ,local_query{{/str}} {{/userdate}}
+		</div>
+		<div class="col-md-12" style="padding-top: 10px">
+			{{{description}}}
+		</div>
+	</div>
+</div>

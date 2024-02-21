@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="local/nse/db" VERSION="20120515" COMMENT="XMLDB file for Moodle local/query" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd">
+  <TABLES>
+    <TABLE NAME="nse_course" COMMENT="">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+		<FIELD NAME="courseid" TYPE="int" LENGTH="10" NOTNULL="false"  SEQUENCE="false" COMMENT=""/>
+		<FIELD NAME="cohortid" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT=""/>
+		<FIELD NAME="bhav" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0"/>
+		<FIELD NAME="bhav_type" TYPE="text" NOTNULL="false" SEQUENCE="false" COMMENT=""/>
+		<FIELD NAME="createddate" TYPE="int" LENGTH="10" NOTNULL="false"  SEQUENCE="false" COMMENT=""/>
+		<FIELD NAME="updateddate" TYPE="int" LENGTH="10" NOTNULL="false"  SEQUENCE="false" COMMENT=""/>
+		<FIELD NAME="nse_response" TYPE="text" NOTNULL="false" SEQUENCE="false" COMMENT=""/>
+		<FIELD NAME="description" TYPE="text" NOTNULL="false" SEQUENCE="false" COMMENT=""/>
+		<FIELD NAME="content_type" TYPE="text" NOTNULL="false" SEQUENCE="false" COMMENT=""/>
+		<FIELD NAME="courseduration" TYPE="int" LENGTH="20" NOTNULL="false"  SEQUENCE="false" COMMENT=""/>
+		<FIELD NAME="isactive" TYPE="int" LENGTH="1" NOTNULL="true" DEFAULT="1" SEQUENCE="false"/>
+	  </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+    </TABLE>
+	<TABLE NAME="nse_assignment" COMMENT="">
+		 <FIELDS>
+			<FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+			<FIELD NAME="assignable_id" TYPE="int" LENGTH="10" NOTNULL="false"  SEQUENCE="false" COMMENT=""/>
+			<FIELD NAME="created_at" TYPE="int" LENGTH="10" SEQUENCE="false" COMMENT=""/>
+			<FIELD NAME="updated_at" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0"/>
+			<FIELD NAME="state" TYPE="text" NOTNULL="false" SEQUENCE="false" COMMENT=""/>
+			<FIELD NAME="due_at" TYPE="int" LENGTH="10" NOTNULL="false"  SEQUENCE="false" COMMENT=""/>
+			<FIELD NAME="start_date" TYPE="int" LENGTH="10" NOTNULL="false"  SEQUENCE="false" COMMENT=""/>
+			<FIELD NAME="assigned_date" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT=""/>
+			<FIELD NAME="user_gtid" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT=""/>
+			<FIELD NAME="enrollid" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT=""/>
+			<FIELD NAME="cohortid" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT=""/>
+			<FIELD NAME="nse_userid" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT=""/>
+			<FIELD NAME="nse_enroll_id" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT=""/>
+		</FIELDS>
+		<KEYS>
+			<KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+		</KEYS>
+	</TABLE>
+  </TABLES>
+</XMLDB>
