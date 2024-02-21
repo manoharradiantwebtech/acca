@@ -15,7 +15,8 @@ function local_participant_extend_navigation(global_navigation $navigation) {
     $tenantuser = $DB->get_record('user', array('theme' => 'radiant', 'id' => $USER->id));
 
     if ($current_theme->value == 'radiant') {
-        if (!is_siteadmin() && $role && $role->roleid == '5') {
+        $capabilityToCheck = 'local/participant:studentview';
+        if (!is_siteadmin() && $role && check_user_capability_in_courses($USER, $capabilityToCheck)) {
             $title = 'Dashboard';
             $path = new moodle_url("/my/");
             $settingsnode = navigation_node::create($title,
@@ -175,7 +176,7 @@ function local_participant_extend_navigation(global_navigation $navigation) {
                 'appearance',
                 new pix_icon('z/query', ''));
             $navigation->add_node($settingsnode);
-        } elseif ($role->roleid == '10' || $role->roleid == '11' || $role->roleid == '12' || $role->roleid == '13' || $role->roleid == '14' || $role->roleid == '15') {
+        } elseif (has_capability('local/participant:iomadviewall', $context, $USER)) {
             $title = 'Dashboard';
             $path = new moodle_url("/my/");
             $settingsnode = navigation_node::create($title,
@@ -235,7 +236,7 @@ function local_participant_extend_navigation(global_navigation $navigation) {
                 'certificate',
                 new pix_icon('z/certificate', ''));
             $navigation->add_node($settingsnode);
-        } elseif ($tenantuser && $role && $role->roleid == '5') {
+        } elseif ($tenantuser && $role && check_user_capability_in_courses($USER, $capabilityToCheck)) {
             $title = 'Dashboard';
             $path = new moodle_url("/my/");
             $settingsnode = navigation_node::create($title,
@@ -492,4 +493,22 @@ function block_course_records_build_progress_course_format($course) {
      */
     $dashoffset = 100 - fmod(100, ($completionpercentage + 5));
     return ['progress' => $progress, 'activities' => '', 'button' => $button,'completion_percentage' => $completionpercentage, 'dashoffset' => $dashoffset];
+}
+
+function check_user_capability_in_courses($user, $capability) {
+    // Get the user's enrolled courses
+    $enrolledCourses = enrol_get_users_courses($user->id, true);
+
+    // Loop through each enrolled course
+    foreach ($enrolledCourses as $course) {
+        // Get the course context
+        $context = context_course::instance($course->id);
+
+        // Check if the user has the specified capability in the current course
+        if (has_capability($capability, $context, $user)) {
+            return true; // User has the capability in at least one course
+        }
+    }
+
+    return false; // User does not have the capability in any enrolled courses
 }

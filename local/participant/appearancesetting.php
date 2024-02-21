@@ -4,6 +4,8 @@ require_once('../../config.php');
 global $USER, $PAGE, $OUTPUT, $CFG, $DB;
 // Start setting up the page
 require_login();
+
+
 $pagetitle = 'Appearance settings';
 $params = array();
 $context = context_user::instance($USER->id);
@@ -15,6 +17,9 @@ $PAGE->set_heading($pagetitle);
 $PAGE->set_pagelayout('coursecategory');
 
 echo $OUTPUT->header();
+$systemcontext = context_system::instance();
+
+require_capability('local/participant:iomadviewall', $systemcontext);
 // Get the user ID
 $data = array(
     'logos' => $CFG->wwwroot . '/admin/settings.php?section=logos',
@@ -26,8 +31,4 @@ $data = array(
      'themesettings' => $CFG->wwwroot . '/admin/settings.php?section=themesettings',
       'themeindex' => $CFG->wwwroot . '/theme/index.php',
 );
-$renderer = $PAGE->get_renderer('core');
-
-echo $renderer->render_from_template('local_participant/appearance_setting', $data);
-echo $OUTPUT->footer();
-?>
+$renderer = $PAGE->get_renderer('c

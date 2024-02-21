@@ -162,3 +162,8 @@ $string['write_to_us_for_support'] = 'Write to us for any support';
 $string['cohorts'] = 'Cohorts';
 //End
 $string['userprogresstask'] = 'User Progress';
+
+// capablity setting
+$string['participant:iomadviewall'] = 'iomadview';
+$string['participant:studentview'] = 'student';
+
