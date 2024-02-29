@@ -373,6 +373,141 @@ class template {
     }
 
     /**
+     * Start Changes
+    * Generate the Image by PDF for the template
+    * @author Radiant Web Tech
+    */
+
+    /**
+     * Generate the Image by PDF for the template.
+     *
+     * @param bool $preview true if it is a preview, false otherwise
+     * @param int $userid the id of the user whose certificate we want to view
+     * @param bool $return Do we want to return the path of the image?
+     * @return string|void Can return the Image in string format if specified.
+     */
+    public function generate_images(bool $preview = false, int $userid = null, bool $return = false) {
+        global $CFG, $DB, $USER;
+
+        if (empty($userid)) {
+            $user = $USER;
+        } else {
+            $user = \core_user::get_user($userid);
+        }
+
+        require_once($CFG->libdir . '/pdflib.php');
+        require_once($CFG->dirroot . '/mod/customcert/lib.php');
+
+        // Get the pages for the template, there should always be at least one page for each template.
+        if ($pages = $DB->get_records('customcert_pages', array('templateid' => $this->id), 'sequence ASC')) {
+            // Create the pdf object.
+            $pdf = new \pdf();
+
+            $customcert = $DB->get_record('customcert', ['templateid' => $this->id]);
+
+            // I want to have my digital diplomas without having to change my preferred language.
+            $userlang = $USER->lang ?? current_language();
+
+            // Check the $customcert exists as it is false when previewing from mod/customcert/manage_templates.php.
+            if ($customcert) {
+                $forcelang = mod_customcert_force_current_language($customcert->language);
+                if (!empty($forcelang)) {
+                    // This is a failsafe -- if an exception triggers during the template rendering, this should still execute.
+                    // Preventing a user from getting trapped with the wrong language.
+                    \core_shutdown_manager::register_function('force_current_language', [$userlang]);
+                }
+            }
+
+            // If the template belongs to a certificate then we need to check what permissions we set for it.
+            if (!empty($customcert->protection)) {
+                $protection = explode(', ', $customcert->protection);
+                $pdf->SetProtection($protection);
+            }
+
+            if (empty($customcert->deliveryoption)) {
+                $deliveryoption = certificate::DELIVERY_OPTION_INLINE;
+            } else {
+                $deliveryoption = $customcert->deliveryoption;
+            }
+
+            // Remove full-stop at the end, if it exists, to avoid "..pdf" being created and being filtered by clean_filename.
+            $filename = rtrim(format_string($this->name, true, ['context' => $this->get_context()]), '.');
+
+            $pdf->setPrintHeader(false);
+            $pdf->setPrintFooter(false);
+            $pdf->SetTitle($filename);
+            $pdf->SetAutoPageBreak(true, 0);
+
+            // This is the logic the TCPDF library uses when processing the name. This makes names
+            // such as 'الشهادة' become empty, so set a default name in these cases.
+            $filename = preg_replace('/[\s]+/', '_', $filename);
+            $filename = preg_replace('/[^a-zA-Z0-9_\.-]/', '', $filename);
+
+            if (empty($filename)) {
+                $filename = get_string('certificate', 'customcert');
+            }
+
+            $filename = clean_filename($filename . '.pdf');
+            // Loop through the pages and display their content.
+            foreach ($pages as $page) {
+                // Add the page to the PDF.
+                if ($page->width > $page->height) {
+                    $orientation = 'L';
+                } else {
+                    $orientation = 'P';
+                }
+                $pdf->AddPage($orientation, array($page->width, $page->height));
+                $pdf->SetMargins($page->leftmargin, 0, $page->rightmargin);
+                // Get the elements for the page.
+                if ($elements = $DB->get_records('customcert_elements', array('pageid' => $page->id), 'sequence ASC')) {
+                    // Loop through and display.
+                    foreach ($elements as $element) {
+                        // Get an instance of the element class.
+                        if ($e = \mod_customcert\element_factory::get_element_instance($element)) {
+                            $e->render($pdf, $preview, $user);
+                        }
+                    }
+                }
+            }
+
+            // Check the $customcert exists as it is false when previewing from mod/customcert/manage_templates.php.
+            if ($customcert) {
+                // We restore original language.
+                if ($userlang != $customcert->language) {
+                    mod_customcert_force_current_language($userlang);
+                }
+            }
+
+            $pdfContent = $pdf->Output('', 'S');
+
+            $pdfPath = $CFG->dirroot . DIRECTORY_SEPARATOR . 'mod/customcert/pdf' . DIRECTORY_SEPARATOR . $filename;
+            file_put_contents($pdfPath, $pdfContent);
+
+            // Adjust image filename and path
+            $imageFilename = pathinfo($filename, PATHINFO_FILENAME) . '.png';
+            $imagePath = $CFG->dirroot . DIRECTORY_SEPARATOR . 'mod/customcert/images' . DIRECTORY_SEPARATOR . $imageFilename;
+            $returnImagePath = $CFG->wwwroot . DIRECTORY_SEPARATOR . 'mod/customcert/images' . DIRECTORY_SEPARATOR . $imageFilename;
+
+            // Check if the directory exists, and create it if not
+            if (!is_dir('images')) {
+                mkdir('images', 0755, true);
+            }
+            
+            // Use Ghostscript to convert PDF to PNG
+            $ghostscriptCommand = "/usr/bin/gs -sDEVICE=pngalpha -o {$imagePath} {$pdfPath}";
+            
+            // Execute the Ghostscript command
+            shell_exec($ghostscriptCommand);
+            
+            // Output the image path if needed
+            if ($return) {
+                return $returnImagePath;
+            }
+        }
+    }
+    // END
+
+    /**
      * Handles copying this template into another.
      *
      * @param object $copytotemplate The template instance to copy to

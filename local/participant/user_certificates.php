@@ -2,6 +2,8 @@
 require_once('../../config.php');
 
 global $USER, $PAGE, $OUTPUT, $CFG, $DB;
+require_once($CFG->dirroot . '/badges/shared_certificate.php');
+
 // Start setting up the page
 require_login();
 $pagetitle = 'user certificates';
@@ -44,33 +46,37 @@ if ($result) {
             'name' => $row->certificate_name,
             'enrolled_date' => userdate($row->enrolled_date),
             'completion_date' => userdate($row->completion_date),
+            'imagepath' => get_pdf_image_path($row->cmid, $user_id)
         );
     }
 }
 
+$script = '';
+foreach($certificate as $certificateValue)
+{
+    $script .= '$("#share_button' . $certificateValue['cmid'] . $certificateValue['userid'] . '").jsSocials({
+                url: "' . $certificateValue['imagepath'] . '",
+                shares: [
+                    { share: "facebook", logo: "fa fa-facebook-square" },
+                    { share: "twitter", logo: "fa fa-twitter-square" },
+                    { share: "linkedin", logo: "fa fa-linkedin-square" },
+                ],
+                shareIn: "popup",
+                showLabel: false,
+                showCount: false,
+            });';
+}
+
 $data = array(
     'completed_certificates' => $certificate,
-    'url' => $CFG->wwwroot . '/my',
+    'url' => $CFG->wwwroot . '/my'
 );
 
 // Embed JavaScript code within PHP
 ?>
 <script>
-    var cmid = <?php echo $certificate[0]['cmid']; ?>;
-    var userid = <?php echo $certificate[0]['userid']; ?>;
-
     $(document).ready(function () {
-        $(".share_button").jsSocials({
-            url: "<?php echo $CFG->wwwroot; ?>/badges/shared_certificate.php?id=" + cmid + "&sid=" + userid + "&downloadown=1",
-            shares: [
-                { share: "facebook", logo: "fa fa-facebook-square" },
-                { share: "twitter", logo: "fa fa-twitter-square" },
-                { share: "linkedin", logo: "fa fa-linkedin-square" },
-            ],
-            shareIn: "popup",
-            showLabel: false,
-            showCount: false,
-        });
+        <?=$script?>
     });
 </script>
 <?php
